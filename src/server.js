@@ -1,6 +1,14 @@
 import app from "./app.js"
-import { PORT } from "./config/env.config.js"
+import { envConfig } from "./config/env.config.js"
+import { connectDB } from "./config/database.config.js"
 
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`)
-})
+const startServer = async () =>{
+
+  await connectDB()
+
+  app.listen(envConfig.port, () => {
+    console.log(`Servidor escuchando en http://localhost:${envConfig.port}`)
+  })
+}
+
+startServer()

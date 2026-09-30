@@ -1,4 +1,4 @@
-import * as dao from "../dao/bookings.fs.dao.js"
+import * as dao from "../dao/mongo/bookings.mongo.dao.js"
 
 export async function getAll(){
     return dao.getAll()

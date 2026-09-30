@@ -25,24 +25,6 @@ export async function createBooking(data){
 }
 
 export async function updateBooking(id, changes){
-    const { id: ignoredId, serviceId, ...allowedChanges } = changes
-    
-    if (serviceId) {
-        const booking = await repository.getById(id)
-        if (!booking) return null
-        
-        const services = booking.services
-        const existingService = services.find(s => s.service === serviceId)
-        
-        if (!existingService) {
-            services.push({ service: serviceId, quantity: 1 })
-        } else {
-            existingService.quantity++
-        }
-        
-        allowedChanges.services = services
-    }
-    
     return repository.update(id, allowedChanges)
 }
 
